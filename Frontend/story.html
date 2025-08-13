@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Story</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">SoilStory</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="upload.html">Upload</a></li>
+          <li class="nav-item"><a class="nav-link" href="analyze.html">Analyze</a></li>
+          <li class="nav-item"><a class="nav-link" href="share.html">Share</a></li>
+          <li class="nav-item"><a class="nav-link active" href="story.html">Story</a></li>
+          <li class="nav-item"><a class="nav-link" href="auth.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">📖 Your Soil Story</h1>
+    <div class="story-box mb-4 p-4 bg-light rounded shadow-sm" id="story">
+      Generating story...
+    </div>
+    <div class="text-center">
+      <button id="shareBtn" class="btn btn-success">Next: Share</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const storyDiv = document.getElementById('story');
+    const analysis = JSON.parse(localStorage.getItem('soilAnalysis') || '{}');
+
+    // Simulate AI story creation
+    setTimeout(() => {
+      const generatedStory = `Once upon a time, in your garden, a soil with pH ${analysis.ph} and ${analysis.moisture} moisture\n      lived happily, feeding plants rich in nutrients. With its ${analysis.organicMatter} organic matter, it promised a bountiful harvest ahead.`;
+      storyDiv.innerText = generatedStory;
+      localStorage.setItem('soilStory', generatedStory);
+    }, 1500);
+
+    document.getElementById('shareBtn').addEventListener('click', () => {
+      window.location.href = 'share.html';
+    });
+  </script>
+</body>
+</html>

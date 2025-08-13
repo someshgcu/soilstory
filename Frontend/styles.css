@@ -1,0 +1,126 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #f9fff9;
+  color: #333;
+}
+
+/* Navbar */
+nav {
+  background: linear-gradient(90deg, #2e7d32, #4caf50);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Logo */
+.logo {
+  display: block;
+  max-width: 180px;
+  margin: 20px auto;
+}
+
+/* Buttons */
+button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  margin-top: 15px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #388e3c;
+}
+
+/* Hero text */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  color: #2e7d32;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 10px auto;
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* Auth form */
+.auth-box {
+  max-width: 350px;
+  margin: 50px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Upload box */
+.upload-box {
+  border: 2px dashed #aaa;
+  padding: 30px;
+  margin: 20px auto;
+  text-align: center;
+  max-width: 500px;
+  border-radius: 12px;
+  background: white;
+  transition: border 0.3s;
+}
+
+.upload-box.dragover {
+  border-color: #4caf50;
+}
+
+#preview {
+  max-width: 100%;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}

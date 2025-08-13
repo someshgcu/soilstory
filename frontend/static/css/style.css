@@ -1,0 +1,434 @@
+/* SoilStory Custom Styles - Earthy Color Palette */
+
+:root {
+    /* Earthy Color Palette */
+    --soil-brown: #8B4513;
+    --soil-light: #D2B48C;
+    --soil-dark: #654321;
+    --leaf-green: #228B22;
+    --sage-green: #9CAF88;
+    --moss-green: #8A9A5B;
+    --sand-beige: #F5F5DC;
+    --clay-red: #CD5C5C;
+    --sky-blue: #87CEEB;
+    --sun-yellow: #FFD700;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sage-green);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--moss-green);
+}
+
+/* Navigation */
+.navbar-brand {
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--sun-yellow);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Cards */
+.card {
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Upload Area */
+.upload-area {
+    position: relative;
+    border: 2px dashed var(--sage-green);
+    border-radius: 15px;
+    background: var(--sand-beige);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-area:hover {
+    border-color: var(--leaf-green);
+    background: rgba(156, 175, 136, 0.1);
+}
+
+.upload-area.dragover {
+    border-color: var(--leaf-green);
+    background: rgba(156, 175, 136, 0.2);
+    transform: scale(1.02);
+}
+
+.upload-placeholder {
+    color: var(--soil-brown);
+}
+
+.upload-placeholder i {
+    color: var(--sage-green);
+}
+
+.image-preview {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Soil Properties */
+.soil-property {
+    margin-bottom: 1rem;
+}
+
+.soil-property label {
+    font-weight: 600;
+    color: var(--soil-dark);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.progress {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+/* Story Card */
+.story-card {
+    background: linear-gradient(135deg, var(--sand-beige) 0%, #ffffff 100%);
+    border-left: 4px solid var(--leaf-green);
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* Video Container */
+.video-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Icons */
+.feature-icon {
+    transition: transform 0.3s ease;
+}
+
+.feature-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--leaf-green) 0%, var(--moss-green) 100%);
+    border: none;
+}
+
+.btn-outline-success {
+    border-color: var(--leaf-green);
+    color: var(--leaf-green);
+}
+
+.btn-outline-success:hover {
+    background: var(--leaf-green);
+    border-color: var(--leaf-green);
+}
+
+/* Form Controls */
+.form-control {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--leaf-green);
+    box-shadow: 0 0 0 0.2rem rgba(34, 139, 34, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--leaf-green);
+    border-color: var(--leaf-green);
+}
+
+/* History Grid */
+.history-item {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.history-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.history-thumbnail {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+.history-thumbnail img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.history-item:hover .history-thumbnail img {
+    transform: scale(1.1);
+}
+
+.history-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(34, 139, 34, 0.9);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Loading States */
+.spinner-border {
+    color: var(--leaf-green);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.1) 0%, rgba(156, 175, 136, 0.1) 100%);
+    color: var(--leaf-green);
+    border-left: 4px solid var(--leaf-green);
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, rgba(205, 92, 92, 0.1) 0%, rgba(139, 69, 19, 0.1) 100%);
+    color: var(--clay-red);
+    border-left: 4px solid var(--clay-red);
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: var(--leaf-green);
+    border-color: #dee2e6;
+    border-radius: 8px;
+    margin: 0 2px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--leaf-green);
+    border-color: var(--leaf-green);
+}
+
+.pagination .page-link:hover {
+    color: var(--moss-green);
+    background-color: rgba(34, 139, 34, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .upload-area {
+        min-height: 150px;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .lead {
+        font-size: 1rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.text-soil {
+    color: var(--soil-brown);
+}
+
+.text-leaf {
+    color: var(--leaf-green);
+}
+
+.text-sage {
+    color: var(--sage-green);
+}
+
+.bg-soil-light {
+    background-color: var(--sand-beige);
+}
+
+.bg-leaf-light {
+    background-color: rgba(34, 139, 34, 0.1);
+}
+
+/* Focus States for Accessibility */
+.btn:focus,
+.form-control:focus,
+.form-check-input:focus {
+    outline: 2px solid var(--leaf-green);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    :root {
+        --soil-brown: #000000;
+        --leaf-green: #006400;
+        --sage-green: #556B2F;
+    }
+    
+    .card {
+        border: 2px solid var(--soil-brown);
+    }
+    
+    .btn {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

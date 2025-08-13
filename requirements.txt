@@ -1,0 +1,15 @@
+Flask==3.0.3
+requests==2.32.3
+numpy==1.24.4
+opencv-python-headless==4.10.0.84
+Pillow==10.4.0
+moviepy==1.0.3
+gTTS==2.5.1
+openai==1.37.1
+google-generativeai==0.1.0rc1
+python-dotenv==1.0.1
+
+# Optional: Only needed if using Veo video generation
+# google-cloud-aiplatform>=1.64.0
+
+

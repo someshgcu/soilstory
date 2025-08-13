@@ -1,0 +1,34 @@
+# Copy this file to .env and fill in your actual API keys
+
+# Gemini API Key (Required for AI story generation and video generation)
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# OpenAI API Key (Alternative AI provider for stories)
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Weather API Key (Optional, for weather context in stories)
+WEATHER_API_KEY=your_weather_api_key_here
+
+# Firebase Configuration (Required for authentication)
+FIREBASE_PROJECT_ID=your_firebase_project_id
+FIREBASE_API_KEY=your_firebase_api_key
+FIREBASE_CLIENT_EMAIL=your_firebase_client_email
+FIREBASE_PRIVATE_KEY=your_firebase_private_key
+FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+
+# Video Generation Settings
+VIDEO_PROVIDER=gemini  # Options: gemini (default), local, veo
+TTS_PROVIDER=gtts      # Options: gtts, elevenlabs
+
+# ElevenLabs API Key (Optional, for better TTS quality)
+ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
+
+# Google Cloud / Vertex AI (Only needed if using Veo video generation)
+# If you don't plan to use Veo, you can leave these empty
+GCP_PROJECT_ID=your_gcp_project_id_here
+GCP_LOCATION=us-central1
+VEO_MODEL_NAME=veo
+GOOGLE_APPLICATION_CREDENTIALS=path/to/your/service-account-key.json
+
+# Other optional settings
+SECRET_KEY=your_secret_key_here

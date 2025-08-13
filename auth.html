@@ -479,9 +479,9 @@
                 // Store user in localStorage
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 
-                // Redirect to dashboard after 2 seconds
+                // Redirect to main page after 2 seconds
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = 'index.html';
                 }, 2000);
             } else {
                 showAlert('login', 'Invalid username or password!', 'error');

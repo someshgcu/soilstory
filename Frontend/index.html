@@ -2,164 +2,383 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoilStory</title>
-    <!-- Bootstrap CSS -->
+    <title>SoilStory - AI-Powered Soil Analysis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .cta-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .btn-custom {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .stats-section {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">SoilStory</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="auth.html">Login</a></li>
-          </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-success" href="#">
+                <i class="bi bi-leaf me-2"></i>SoilStory
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success btn-custom ms-2" href="auth.html">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Get Started
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
-    <!-- End Navbar -->
 
-
-    <div class="container py-5">
-      <div class="row align-items-center mb-5 fade-in" id="hero-section">
-        <div class="col-md-6 text-center text-md-start">
-          <h1 class="display-4 fw-bold mb-3">Welcome to <span class="text-primary">SoilStory</span></h1>
-          <p class="lead mb-4">AI-powered soil analysis and storytelling. Upload a photo of your soil, get instant health insights, and enjoy a personalized soil story that bridges science and creativity.</p>
-          <button class="btn btn-lg btn-success me-2" data-bs-toggle="modal" data-bs-target="#getStartedModal">Get Started</button>
-          <button class="btn btn-outline-primary btn-lg" onclick="scrollToFeatures()">Learn More</button>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
         </div>
-        <div class="col-md-6 text-center">
-          <img src="logo.jpeg" alt="SoilStory Logo" id="mainLogo" class="img-fluid rounded shadow interactive-logo" style="max-width: 320px; min-width:200px; margin-bottom: 20px; cursor:pointer;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click me to learn more!">
-        </div>
-    <!-- Logo Info Modal -->
-    <div class="modal fade" id="logoInfoModal" tabindex="-1" aria-labelledby="logoInfoModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="logoInfoModalLabel">About SoilStory</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <img src="logo.png" alt="SoilStory Logo" style="max-width:120px; margin-bottom:15px;">
-            <p>SoilStory is your AI-powered companion for soil analysis and creative storytelling. Upload your soil photo, get instant insights, and share your unique soil story!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Let's Grow!</button>
-          </div>
-        </div>
-      </div>
-    </div>
-      </div>
-
-      <!-- Features Section -->
-      <div class="row" id="features">
-        <h2 class="text-center mb-4">Features</h2>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm feature-card" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload soil images easily!">
-            <div class="card-body text-center">
-              <i class="bi bi-cloud-upload display-5 text-primary mb-3"></i>
-              <h5 class="card-title">Easy Upload</h5>
-              <p class="card-text">Drag and drop your soil images or select from your device. Fast and secure uploads.</p>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-3 fw-bold mb-4">
+                        Discover Your Soil's Story
+                    </h1>
+                    <p class="lead mb-4">
+                        Transform soil analysis with AI-powered insights. Upload a photo and get instant, accurate soil health assessments with personalized recommendations and engaging stories.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="auth.html" class="btn btn-light btn-custom">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Start Analyzing
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-custom">
+                            <i class="bi bi-play-circle me-2"></i>Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="logo.jpeg" alt="SoilStory" class="img-fluid rounded-3 shadow-lg" style="max-width: 400px;">
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm feature-card" data-bs-toggle="tooltip" data-bs-placement="top" title="Instant AI-powered analysis!">
-            <div class="card-body text-center">
-              <i class="bi bi-graph-up-arrow display-5 text-success mb-3"></i>
-              <h5 class="card-title">Instant Analysis</h5>
-              <p class="card-text">Get real-time insights into your soil’s health and composition using advanced AI models.</p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Soil Parameters</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Analysis</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">5min</div>
+                    <div class="stat-label">Results Time</div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm feature-card" data-bs-toggle="tooltip" data-bs-placement="top" title="Share your soil story!">
-            <div class="card-body text-center">
-              <i class="bi bi-share-fill display-5 text-warning mb-3"></i>
-              <h5 class="card-title">Share & Storytelling</h5>
-              <p class="card-text">Create and share personalized soil stories with friends, family, or your community.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold text-success mb-3">Why Choose SoilStory?</h2>
+                    <p class="lead text-muted">Advanced AI technology meets agricultural expertise to provide you with the most comprehensive soil analysis available.</p>
+                </div>
             </div>
-          </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card feature-card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-robot"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">AI-Powered Analysis</h4>
+                            <p class="text-muted">State-of-the-art machine learning models analyze soil images with unprecedented accuracy, detecting pH levels, organic matter, phosphorus, and electrical conductivity.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card feature-card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-book"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">Personalized Stories</h4>
+                            <p class="text-muted">Get engaging, educational stories about your soil's health with actionable gardening advice tailored to your specific soil conditions and location.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card feature-card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-camera-video"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">Video Generation</h4>
+                            <p class="text-muted">Transform your soil analysis into engaging educational videos with AI-generated narration and visual storytelling.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Get Started Modal -->
-    <div class="modal fade" id="getStartedModal" tabindex="-1" aria-labelledby="getStartedModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="getStartedModalLabel">Welcome to SoilStory!</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Ready to begin your soil journey? Login or sign up to start uploading and analyzing your soil samples.</p>
-          </div>
-          <div class="modal-footer">
-            <a href="auth.html" class="btn btn-primary">Login / Sign Up</a>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+    <!-- How It Works Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold text-success mb-3">How It Works</h2>
+                    <p class="lead text-muted">Three simple steps to unlock your soil's secrets</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="mb-4">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 2rem;">
+                            1
+                        </div>
+                    </div>
+                    <h5 class="fw-bold">Upload Photo</h5>
+                    <p class="text-muted">Simply take a photo of your soil sample and upload it to our platform.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="mb-4">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 2rem;">
+                            2
+                        </div>
+                    </div>
+                    <h5 class="fw-bold">AI Analysis</h5>
+                    <p class="text-muted">Our advanced AI analyzes your soil image and extracts key health parameters.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="mb-4">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 2rem;">
+                            3
+                        </div>
+                    </div>
+                    <h5 class="fw-bold">Get Results</h5>
+                    <p class="text-muted">Receive detailed analysis, personalized stories, and actionable recommendations.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Custom JS for interactivity -->
-    <script>
-      // Smooth scroll to features
-      function scrollToFeatures() {
-        document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
-      }
-      // Fade-in effect for hero section and logo
-      window.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('hero-section').classList.add('show');
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function (tooltipTriggerEl) {
-          return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-        // Logo entrance animation
-        setTimeout(function() {
-          document.getElementById('mainLogo').classList.add('logo-entrance');
-        }, 300);
-        // Logo click opens modal
-        document.getElementById('mainLogo').addEventListener('click', function() {
-          var logoModal = new bootstrap.Modal(document.getElementById('logoInfoModal'));
-          logoModal.show();
-        });
-      });
-    </script>
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <!-- Custom fade-in style -->
-    <style>
-      .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1s, transform 1s; }
-      .fade-in.show { opacity: 1; transform: none; }
-      .feature-card:hover { box-shadow: 0 0 20px 0 rgba(0,123,255,0.15); transform: translateY(-5px) scale(1.03); transition: 0.3s; }
-      .interactive-logo {
-        transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.4s;
-      }
-      .interactive-logo:hover {
-        transform: scale(1.08) rotate(-2deg);
-        box-shadow: 0 0 40px 0 rgba(0,200,83,0.25);
-      }
-      .logo-entrance {
-        animation: logoPopIn 1s cubic-bezier(.4,2,.6,1);
-      }
-      @keyframes logoPopIn {
-        0% { opacity: 0; transform: scale(0.7) translateY(40px); }
-        80% { opacity: 1; transform: scale(1.1) translateY(-10px); }
-        100% { opacity: 1; transform: scale(1) translateY(0); }
-      }
-    </style>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold text-success mb-4">Ready to Discover Your Soil's Story?</h2>
+            <p class="lead text-muted mb-4">Join thousands of farmers, gardeners, and researchers who trust SoilStory for accurate soil analysis.</p>
+            <a href="auth.html" class="btn btn-success btn-custom btn-lg">
+                <i class="bi bi-rocket-takeoff me-2"></i>Start Your Journey Today
+            </a>
+        </div>
+    </section>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="fw-bold">SoilStory</h6>
+                    <p class="small text-muted mb-0">AI-powered soil analysis for sustainable agriculture</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="small text-muted mb-0">&copy; 2025 SoilStory. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98) !important';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95) !important';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
 

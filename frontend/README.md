@@ -1,276 +1,107 @@
-# SoilStory Frontend
+# SoilStory Frontend - Page Structure
 
-A modern, professional, and beautiful user interface for the SoilStory web application built with HTML, CSS, JavaScript, and Bootstrap.
+## Overview
+This document describes the new page structure for the SoilStory application with authentication integration.
 
-## 🌟 Features
+## Page Flow
 
-- **Modern Design**: Earthy color palette with professional styling
-- **Responsive Layout**: Works perfectly on all screen sizes
-- **Drag & Drop**: Easy photo upload with drag and drop support
-- **Real-time Analysis**: Live soil property visualization with progress bars
-- **AI Story Generation**: Display AI-generated soil stories
-- **Video Generation**: Convert stories to educational videos
-- **Local Storage**: All data stored locally in the browser
-- **Search & History**: Browse and search through analysis history
-- **Export Functionality**: Download analysis data as JSON
-- **Accessibility**: Built with accessibility best practices
+### 1. **index.html** - Landing Page
+- **Purpose**: Public landing page introducing the application
+- **Features**: 
+  - Hero section with call-to-action
+  - Feature overview
+  - Statistics section
+  - How it works guide
+- **Navigation**: Contains "Get Started" button that leads to authentication
+- **Access**: Public (no authentication required)
 
-## 🎨 Design Features
+### 2. **auth.html** - Authentication Page
+- **Purpose**: User login and registration
+- **Features**:
+  - Login form with username/password
+  - Registration form for new users
+  - Uses `auth_credentials.json` for user validation
+  - Fallback to hardcoded users if JSON file unavailable
+- **Authentication**: Validates against JSON credentials file
+- **Redirect**: After successful login, redirects to `dashboard.html`
+- **Access**: Public (no authentication required)
 
-### Color Palette
-- **Soil Brown**: #8B4513
-- **Leaf Green**: #228B22
-- **Sage Green**: #9CAF88
-- **Moss Green**: #8A9A5B
-- **Sand Beige**: #F5F5DC
-- **Clay Red**: #CD5C5C
+### 3. **dashboard.html** - User Dashboard
+- **Purpose**: Main user interface after login
+- **Features**:
+  - User information display
+  - Quick access to main features
+  - Recent activity history
+  - Navigation to other pages
+- **Authentication**: Requires valid login session
+- **Redirect**: If not authenticated, redirects to `auth.html`
+- **Access**: Protected (authentication required)
 
-### UI Components
-- Modern card-based layout
-- Smooth hover animations
-- Progress bars for soil properties
-- Responsive grid system
-- Bootstrap 5 integration
-- Custom scrollbars
-- Loading states and spinners
+### 4. **main.html** - Soil Analysis Interface
+- **Purpose**: Main soil analysis functionality
+- **Features**:
+  - Photo upload interface
+  - Soil analysis results
+  - AI-generated stories
+  - Video generation
+- **Authentication**: Requires valid login session
+- **Redirect**: If not authenticated, redirects to `auth.html`
+- **Access**: Protected (authentication required)
 
-## 📁 File Structure
+## Authentication Flow
 
 ```
-frontend/
-├── index.html              # Main landing & upload page
-├── history.html            # Analysis history page
-├── static/
-│   ├── css/
-│   │   └── style.css      # Custom styles with earthy theme
-│   └── js/
-│       ├── storage.js      # LocalStorage management
-│       ├── api.js          # Backend API communication
-│       └── main.js         # Main application logic
-└── README.md               # This file
+User visits index.html → Clicks "Get Started" → Goes to auth.html → 
+Login/Register → Redirected to dashboard.html → Can access main.html
 ```
 
-## 🚀 Quick Start
+## User Credentials
 
-### 1. Open in Browser
-Simply open `index.html` in any modern web browser. No build process required!
+The system uses `auth_credentials.json` with 10 predefined users:
 
-### 2. Test the Application
-- Upload a soil photo (drag & drop supported)
-- Enter location coordinates or use GPS
-- Click "Analyze Soil" to see results
-- Generate videos from AI stories
-- View analysis history
+- **Admin**: admin / admin123
+- **Scientist**: scientist1 / science2024  
+- **Gardener**: gardener1 / garden123
+- **Demo**: demo / demo123
+- **And 6 more users...**
 
-### 3. Backend Integration
-The frontend automatically detects if the backend is available:
-- **Online Mode**: Connects to Flask backend for real analysis
-- **Demo Mode**: Uses mock data when backend is unavailable
+## Technical Details
 
-## 🛠️ Development
+### Authentication Storage
+- Uses `localStorage` to store user session
+- Key: `currentUser` (stores user object)
+- Key: `userHistory` (stores user activity)
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No Node.js or build tools required
+### Security Features
+- Password visibility toggle
+- Form validation
+- Session persistence
+- Automatic logout on invalid sessions
 
-### Local Development
-1. Clone the repository
-2. Open `index.html` in your browser
-3. Make changes to HTML, CSS, or JavaScript
-4. Refresh browser to see changes
+### Responsive Design
+- Mobile-friendly interface
+- Bootstrap 5 framework
+- Custom CSS animations
+- Modern UI/UX patterns
 
-### File Modifications
+## File Dependencies
 
-#### HTML Structure
-- `index.html`: Main application page
-- `history.html`: History and analysis gallery
+- `auth_credentials.json` - User database
+- `styles.css` - Custom styling (if exists)
+- `script.js` - Additional functionality (if exists)
+- Bootstrap CSS/JS - Framework dependencies
+- Bootstrap Icons - Icon library
 
-#### Styling
-- `static/css/style.css`: All custom styles
-- Uses CSS custom properties for consistent theming
-- Responsive breakpoints for mobile/tablet/desktop
+## Usage Instructions
 
-#### JavaScript
-- `static/js/storage.js`: Data persistence layer
-- `static/js/api.js`: Backend communication
-- `static/js/main.js`: UI logic and event handling
+1. **Start with index.html** - Landing page
+2. **Navigate to auth.html** - Login/Register
+3. **Access dashboard.html** - After authentication
+4. **Use main.html** - For soil analysis features
 
-## 🔧 Configuration
+## Notes
 
-### Backend URL
-The frontend automatically detects the current domain. For development:
-- Local: `http://localhost:5000`
-- Production: Your deployed domain
-
-### Local Storage
-- Maximum 50 analyses stored locally
-- Automatic cleanup when limit exceeded
-- Export/import functionality for data backup
-
-### Demo Mode
-When backend is unavailable:
-- Mock soil analysis data
-- Simulated processing delays
-- Sample AI stories
-- Placeholder video generation
-
-## 📱 Responsive Design
-
-### Breakpoints
-- **Mobile**: < 576px
-- **Tablet**: 576px - 768px
-- **Desktop**: > 768px
-
-### Mobile Features
-- Touch-friendly buttons
-- Swipe gestures for navigation
-- Optimized image upload
-- Collapsible navigation menu
-
-## ♿ Accessibility
-
-### Features
-- Semantic HTML5 structure
-- ARIA labels and roles
-- Keyboard navigation support
-- High contrast mode support
-- Screen reader compatibility
-- Focus indicators
-
-### Standards
-- WCAG 2.1 AA compliance
-- Semantic markup
-- Proper heading hierarchy
-- Alt text for images
-- Form labels and validation
-
-## 🎯 Browser Support
-
-### Supported Browsers
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-### Required Features
-- ES6+ JavaScript
-- CSS Grid and Flexbox
-- LocalStorage API
-- Fetch API
-- Geolocation API (optional)
-
-## 🚀 Deployment
-
-### Static Hosting
-The frontend can be deployed to any static hosting service:
-
-1. **Netlify**: Drag and drop the `frontend/` folder
-2. **Vercel**: Connect GitHub repository
-3. **GitHub Pages**: Push to `gh-pages` branch
-4. **AWS S3**: Upload files to S3 bucket
-
-### Build Process
-No build process required! The application runs directly in the browser.
-
-### Environment Variables
-No environment variables needed for the frontend. All configuration is handled automatically.
-
-## 🧪 Testing
-
-### Manual Testing
-1. **Photo Upload**: Test various image formats and sizes
-2. **Location Services**: Test GPS and manual coordinate entry
-3. **Analysis Flow**: Complete end-to-end analysis
-4. **Video Generation**: Test video creation process
-5. **History Management**: Test search, export, and deletion
-
-### Browser Testing
-- Test on different browsers
-- Test responsive design on various screen sizes
-- Test with different network conditions
-
-## 🔒 Security Features
-
-### Client-Side Security
-- Input validation and sanitization
-- File type and size restrictions
-- XSS prevention through proper escaping
-- CSRF protection through token validation
-
-### Data Privacy
-- All data stored locally in browser
-- No data sent to external services without consent
-- Optional location sharing
-- Export/import for data portability
-
-## 📊 Performance
-
-### Optimization Features
-- Lazy loading of images
-- Efficient DOM manipulation
-- Minimal external dependencies
-- Optimized CSS animations
-- Efficient localStorage operations
-
-### Loading Times
-- **Initial Load**: < 2 seconds
-- **Photo Upload**: < 1 second
-- **Analysis**: 2-5 seconds (backend dependent)
-- **Video Generation**: 3-10 seconds (backend dependent)
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### Photos Not Uploading
-- Check file size (max 10MB)
-- Ensure file is an image (JPG, PNG, GIF)
-- Check browser console for errors
-
-#### Analysis Not Working
-- Verify backend server is running
-- Check network connectivity
-- Look for console error messages
-
-#### Local Storage Issues
-- Check browser storage quota
-- Clear browser data if needed
-- Ensure cookies are enabled
-
-### Debug Mode
-Open browser console to see:
-- API request logs
-- Storage operations
-- Error messages
-- Performance metrics
-
-## 🤝 Contributing
-
-### Development Guidelines
-1. Follow existing code structure
-2. Use semantic HTML
-3. Maintain accessibility standards
-4. Test on multiple browsers
-5. Update documentation
-
-### Code Style
-- Use ES6+ features
-- Follow JavaScript best practices
-- Maintain consistent CSS naming
-- Add comments for complex logic
-
-## 📄 License
-
-This project is part of the SoilStory application. See the main project license for details.
-
-## 🆘 Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review browser console for errors
-3. Check backend server status
-4. Review documentation
-
----
-
-**SoilStory Frontend** - Making soil analysis beautiful and accessible! 🌱
+- All protected pages check for valid `currentUser` in localStorage
+- Invalid sessions automatically redirect to authentication
+- User data persists across browser sessions until logout
+- Demo credentials are displayed on the authentication page for testing

@@ -71,5 +71,3 @@ Frontend at `/`, APIs under `/api/*`.
 - Set env var: `VIDEO_PROVIDER=local`
 - Creates videos with TTS narration over the uploaded soil image
 - Requires ffmpeg for best results
-
-
